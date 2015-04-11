@@ -18,9 +18,12 @@ bus = smbus.SMBus(1)
 # This is the address we setup in the Arduino Program
 address = 0x04
 
+# We're returning html back to the iPad as a sanity check and to give confirmation as to which
+# bag will be printed.
 print "Content-type: text/html\n\n"
 print "<html>"
 
+# here we're reading in the requested bag value from the ipad
 f = cgi.FieldStorage()
 bag=int(f['bag'].value)
 
@@ -48,3 +51,6 @@ elif bag >= 100 and bag <= 600:
 		bus.write_byte(address, int(ch))
 
 print "</html>"
+
+# could the above have been cleaner? absolutely. you know what though? 
+# IT WORKED.
